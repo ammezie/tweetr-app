@@ -1,8 +1,15 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import axios from 'axios'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+
+// reference axios globally
+window.axios = axios
+
+// Global axios defaults
+axios.defaults.baseURL = 'http://127.0.0.1:3333'
 
 Vue.config.productionTip = false
 
