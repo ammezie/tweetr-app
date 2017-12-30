@@ -9,7 +9,6 @@
 
         <Tweets
           :tweets.sync="tweets"
-          :user="user"
           :auth-user="user"
         />
 
