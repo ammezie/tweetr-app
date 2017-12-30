@@ -5,6 +5,7 @@
       :key="tweet.id"
       :tweet="tweet"
       :auth-user="authUser"
+      v-on:delete="removeDeletedTweet"
     />
   </div>
 </template>
@@ -36,6 +37,13 @@
       fetchAddedTweet (tweet) {
         // add tweet to top of tweets
         return this.tweets.unshift(tweet)
+      },
+      removeDeletedTweet (tweetId) {
+        const filteredTweets = this.tweets.filter(tweet => {
+          return tweet.id !== tweetId
+        })
+
+        this.$emit('update:tweets', filteredTweets)
       }
     }
   }
