@@ -8,6 +8,7 @@ import UserPasswordSettings
 import Home from '@/components/Home'
 import SingleTweet from '@/components/Tweet/SingleTweet'
 import UserProfile from '@/components/User/Profile/UserProfile'
+import UsersFollowing from '@/components/User/Profile/UsersFollowing'
 
 Vue.use(Router)
 
@@ -32,6 +33,15 @@ export default new Router({
     {
       path: '/settings/password',
       component: UserPasswordSettings
+    },
+    {
+      path: '/following',
+      component: UsersFollowing
+    },
+    {
+      path: '/:username/following',
+      component: UsersFollowing,
+      props: true
     },
     {
       path: '/:username',
