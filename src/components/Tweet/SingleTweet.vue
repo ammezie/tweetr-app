@@ -17,6 +17,14 @@
             <div class="extra text">
               {{ tweet.tweet }}
             </div>
+
+            <TweetReactions
+              :tweet="tweet"
+              :replies="replies"
+              :favorites.sync="tweet.favorites"
+              :auth-user="authUser"
+            />
+
           </div>
         </div>
       </div>
@@ -36,18 +44,21 @@
 </template>
 
 <script>
-  import Replies from '@/components/Tweet/Replies';
+  import Replies from '@/components/Tweet/Replies'
+  import TweetReactions from '@/components/Tweet/TweetReactions'
 
   export default {
     name: 'SingleTweet',
     components: {
-      Replies
+      Replies,
+      TweetReactions,
     },
     data () {
       return {
         tweet: '',
         replies: [],
-        reply: ''
+        reply: '',
+        authUser: ''
       }
     },
     computed: {
@@ -57,6 +68,7 @@
     },
     created () {
       this.fetchTweet()
+      this.fetchAuthenticatedUser()
     },
     methods: {
       fetchTweet () {
@@ -85,6 +97,19 @@
             this.reply = ''
 
             this.replies.unshift(response.data.data)
+          })
+      },
+      fetchAuthenticatedUser () {
+        const token = localStorage.getItem('tweetr-token')
+
+        axios
+          .get('account/me', {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          })
+          .then(response => {
+            this.authUser = response.data.data
           })
       }
     }
