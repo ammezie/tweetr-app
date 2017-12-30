@@ -10,6 +10,7 @@ import SingleTweet from '@/components/Tweet/SingleTweet'
 import UserProfile from '@/components/User/Profile/UserProfile'
 import UsersFollowing from '@/components/User/Profile/UsersFollowing'
 import UserFollowers from '@/components/User/Profile/UserFollowers'
+import FavoriteTweets from '@/components/User/Profile/FavoriteTweets'
 
 Vue.use(Router)
 
@@ -51,6 +52,15 @@ export default new Router({
     {
       path: '/:username/followers',
       component: UserFollowers,
+      props: true
+    },
+    {
+      path: '/favorites',
+      component: FavoriteTweets
+    },
+    {
+      path: '/:username/favorites',
+      component: FavoriteTweets,
       props: true
     },
     {
