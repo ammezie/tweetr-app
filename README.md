@@ -1,6 +1,6 @@
 # tweetr-app
 
-> A Twitter clone
+> A Twitter clone. The repo for the API is available at [https://github.com/ammezie/tweetr-api](https://github.com/ammezie/tweetr-api)
 
 ## Build Setup
 
